@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { CartProvider } from "./provider/cart-provider";
@@ -32,7 +32,7 @@ export default function RootLayout() {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
-                  // router.push("cart");
+                  router.push("/cart");
                 }}
                 style={{
                   marginRight: 12,

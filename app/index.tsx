@@ -18,13 +18,13 @@ export default function SignUp() {
     setShowOTP(true);
   };
 
-  // const handleVerifyOTP = () => {
-  //   if (otp === "000000") {
-  //     router.replace("/home");
-  //   } else {
-  //     alert("Invalid OTP. Please try again.");
-  //   }
-  // };
+  const handleOTPVerification = () => {
+    if (otp === "000000") {
+      router.replace("/home");
+    } else {
+      alert("Invalid OTP. Please try again.");
+    }
+  };
 
   if (!showOTP) {
     return (
@@ -63,7 +63,7 @@ export default function SignUp() {
         value={otp}
         onChangeText={setOTP}
       />
-      <Pressable style={commonStyles.button} onPress={handleVerifyOTP}>
+      <Pressable style={commonStyles.button} onPress={handleOTPVerification}>
         <Text style={commonStyles.buttonText}>Verify</Text>
       </Pressable>
     </View>

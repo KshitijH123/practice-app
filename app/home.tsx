@@ -120,6 +120,4 @@ export default function Home() {
     </View>
   );
 }
-function setShouldRenderIcon(arg0: boolean): void {
-  throw new Error("Function not implemented.");
-}
+
