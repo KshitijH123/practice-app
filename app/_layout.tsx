@@ -1,29 +1,66 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Stack } from "expo-router";
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { CartProvider } from "./provider/cart-provider";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+    <CartProvider>
+      <Stack
+        screenOptions={{
+          statusBarBackgroundColor: "#FF8C00",
+          headerStyle: {
+            backgroundColor: "orange",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "Sign Up",
+          }}
+        />
+        <Stack.Screen
+          name="home"
+          options={{
+            title: "Product List",
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  // router.push("cart");
+                }}
+                style={{
+                  marginRight: 12,
+                  padding: 5,
+                  height: 36,
+                  width: 36,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <MaterialCommunityIcons name="cart" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="cart"
+          options={{
+            title: "Cart",
+          }}
+        />
+        <Stack.Screen
+          name="order-confirmation"
+          options={{
+            title: "Order Confirmation",
+          }}
+        />
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    </CartProvider>
   );
 }
