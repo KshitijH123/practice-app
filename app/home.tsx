@@ -48,7 +48,6 @@ const PRODUCTS: {
 export default function Home() {
   const { items, updateQuantity } = useCart();
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-  // Update local quantities state when items change
   React.useEffect(() => {
     const newQuantities: { [key: string]: number } = {};
     items.forEach((item) => {
